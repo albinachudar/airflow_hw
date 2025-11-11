@@ -1,0 +1,16 @@
+# Данные (кроме train и test)
+data/models/
+data/predictions/
+
+# Виртуальное окружение
+venv/
+
+# IDE
+.idea/
+
+# Системные файлы
+.DS_Store
+
+# Python кэш
+__pycache__/
+*.pyc

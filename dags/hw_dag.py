@@ -6,11 +6,14 @@ from airflow.models import DAG
 from airflow.providers.standard.operators.python import PythonOperator
 
 
-path = '/opt/airflow/airflow_hw'
-# Добавим путь к коду проекта в переменную окружения, чтобы он был доступен python-процессу
-os.environ['PROJECT_PATH'] = path
-# Добавим путь к коду проекта в $PATH, чтобы импортировать функции
-sys.path.insert(0, path)
+project_path = '/opt/airflow/dags'
+os.environ['PROJECT_PATH'] = project_path
+sys.path.insert(0, project_path)
+# path = '/opt/airflow/airflow_hw'
+# # Добавим путь к коду проекта в переменную окружения, чтобы он был доступен python-процессу
+# os.environ['PROJECT_PATH'] = path
+# # Добавим путь к коду проекта в $PATH, чтобы импортировать функции
+# sys.path.insert(0, path)
 
 from modules.pipeline import pipeline
 from modules.predict import predict

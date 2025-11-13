@@ -54,15 +54,17 @@ def remove_outliers(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def create_features(df: pd.DataFrame) -> pd.DataFrame:
-    def short_model(x):
-        if not pd.isna(x):
-            return x.lower().split(' ')[0]
-        else:
-            return x
-
     df = df.copy()
-    df.loc[:, 'short_model'] = df['model'].apply(short_model)
-    df.loc[:, 'age_category'] = df['year'].apply(lambda x: 'new' if x > 2013 else ('old' if x < 2006 else 'average'))
+
+    # Заменяем внутреннюю функцию на lambda или прямое применение
+    df.loc[:, 'short_model'] = df['model'].apply(
+        lambda x: x.lower().split(' ')[0] if pd.notna(x) else x
+    )
+
+    df.loc[:, 'age_category'] = df['year'].apply(
+        lambda x: 'new' if x > 2013 else ('old' if x < 2006 else 'average')
+    )
+
     return df
 
 

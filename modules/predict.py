@@ -47,13 +47,17 @@ def predict_single_file(json_file_path: str, model: object) -> dict:
     # Создаем DataFrame из данных
     df = pd.DataFrame([data])
 
+    # Сохраняем данные для возврата значений
+    car_id = df['id'].iloc[0]
+    car_price = df['price'].iloc[0]
+
     # Делаем предсказание
     prediction = model.predict(df)
 
     return {
-        'id': df.id,
+        'id': car_id,
         'price_category': prediction[0],
-        'price': df.price
+        'price': car_price,
     }
 
 
